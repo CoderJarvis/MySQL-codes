@@ -1,0 +1,598 @@
+Microsoft Windows [Version 10.0.19043.1237]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\xampp\mysql\bin>mysql -u root -p -h localhost
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 56
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| dbharry            |
+| idiscuss           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| projectdb          |
+| sampledb           |
+| sampledb2          |
+| test               |
+| user               |
++--------------------+
+11 rows in set (0.109 sec)
+
+MariaDB [(none)]> clear
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbharry            |
+| idiscuss           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| projectdb          |
+| sampledb           |
+| sampledb2          |
+| test               |
+| user               |
++--------------------+
+11 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database thapa
+    -> ;
+Query OK, 1 row affected (0.103 sec)
+
+MariaDB [(none)]> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| dbharry            |
+| idiscuss           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| projectdb          |
+| sampledb           |
+| sampledb2          |
+| test               |
+| thapa              |
+| user               |
++--------------------+
+12 rows in set (0.001 sec)
+
+MariaDB [(none)]> use thapa
+Database changed
+
+show databases' at line 1
+MariaDB [thapa]> ByeCtrl-C -- exit!
+
+C:\xampp\mysql\bin>mysql -u root -p -h localhost
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 57
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbharry            |
+| idiscuss           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| projectdb          |
+| sampledb           |
+| sampledb2          |
+| test               |
+| thapa              |
+| user               |
++--------------------+
+12 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database thapademo
+    -> ;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbharry            |
+| idiscuss           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| projectdb          |
+| sampledb           |
+| sampledb2          |
+| test               |
+| thapa              |
+| thapademo          |
+| user               |
++--------------------+
+13 rows in set (0.001 sec)
+
+MariaDB [(none)]> drop database thapademo;
+Query OK, 0 rows affected (0.252 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbharry            |
+| idiscuss           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| projectdb          |
+| sampledb           |
+| sampledb2          |
+| test               |
+| thapa              |
+| user               |
++--------------------+
+12 rows in set (0.001 sec)
+
+MariaDB [(none)]> use thapa;
+Database changed
+MariaDB [thapa]> select database();
++------------+
+| database() |
++------------+
+| thapa      |
++------------+
+1 row in set (0.000 sec)
+
+MariaDB [thapa]> create table students(
+    -> id int,
+    -> name varchar(255),
+    -> phoneNo varchar(255)
+    -> );
+Query OK, 0 rows affected (0.356 sec)
+
+MariaDB [thapa]> show tables;
++-----------------+
+| Tables_in_thapa |
++-----------------+
+| students        |
++-----------------+
+1 row in set (0.007 sec)
+
+MariaDB [thapa]> create table customers(c_id int,c_name varchar(255),c_phoneNo varchar(255));
+Query OK, 0 rows affected (0.558 sec)
+
+MariaDB [thapa]> show tables
+    -> ;
++-----------------+
+| Tables_in_thapa |
++-----------------+
+| customers       |
+| students        |
++-----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [thapa]> create table employee (emp_id int,emp_name varchar(255),emp_salary varchar(255));
+Query OK, 0 rows affected (0.263 sec)
+
+MariaDB [thapa]> show tables;
++-----------------+
+| Tables_in_thapa |
++-----------------+
+| customers       |
+| employee        |
+| students        |
++-----------------+
+3 rows in set (0.001 sec)
+
+
+MariaDB [thapa]> drop table customers;
+Query OK, 0 rows affected (0.289 sec)
+
+MariaDB [thapa]> show tables;
++-----------------+
+| Tables_in_thapa |
++-----------------+
+| employee        |
+| students        |
++-----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from students;
+Empty set (0.002 sec)
+
+MariaDB [thapa]> desc students;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | YES  |     | NULL    |       |
+| name    | varchar(255) | YES  |     | NULL    |       |
+| phoneNo | varchar(255) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0.013 sec)
+
+
+MariaDB [thapa]> insert into students values(1,"saswat","9853319315");
+Query OK, 1 row affected (0.132 sec)
+
+MariaDB [thapa]> select * from students
+    -> ;
++------+--------+------------+
+| id   | name   | phoneNo    |
++------+--------+------------+
+|    1 | saswat | 9853319315 |
++------+--------+------------+
+1 row in set (0.000 sec)
+
+MariaDB [thapa]> insert into students values(2,"babU","8909836474");
+Query OK, 1 row affected (0.122 sec)
+
+MariaDB [thapa]> insert into students values  (3,"soumya","917827448");
+Query OK, 1 row affected (0.123 sec)
+
+MariaDB [thapa]> insert into students values (4,"lubun","746577557");
+Query OK, 1 row affected (0.050 sec)
+
+
+MariaDB [thapa]> insert into students values(3,"raja","8477585");
+Query OK, 1 row affected (0.138 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+
+| id   | name   | phoneNo    |
++------+--------+------------+
+|    1 | saswat | 9853319315 |
+|    2 | babU   | 8909836474 |
+|    3 | soumya | 917827448  |
+|    4 | lubun  | 746577557  |
+|    3 | raja   | 8477585    |
++------+--------+------------+
+5 rows in set (0.000 sec)
+
+MariaDB [thapa]> update students set id=3 where name="raja";
+Query OK, 0 rows affected (0.003 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+
+| id   | name   | phoneNo    |
++------+--------+------------+
+|    1 | saswat | 9853319315 |
+|    2 | babU   | 8909836474 |
+|    3 | soumya | 917827448  |
+|    4 | lubun  | 746577557  |
+|    3 | raja   | 8477585    |
++------+--------+------------+
+5 rows in set (0.000 sec)
+
+MariaDB [thapa]> update students set id=5 where name="raja";
+Query OK, 1 row affected (0.233 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+
+| id   | name   | phoneNo    |
++------+--------+------------+
+|    1 | saswat | 9853319315 |
+|    2 | babU   | 8909836474 |
+|    3 | soumya | 917827448  |
+|    4 | lubun  | 746577557  |
+|    5 | raja   | 8477585    |
++------+--------+------------+
+5 rows in set (0.000 sec)
+
+MariaDB [thapa]> insert into students values(6,"nilu","10297364");
+Query OK, 1 row affected (0.031 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+
+| id   | name   | phoneNo    |
++------+--------+------------+
+|    1 | saswat | 9853319315 |
+|    2 | babU   | 8909836474 |
+|    3 | soumya | 917827448  |
+|    4 | lubun  | 746577557  |
+|    5 | raja   | 8477585    |
+|    6 | nilu   | 10297364   |
++------+--------+------------+
+6 rows in set (0.091 sec)
+
+MariaDB [thapa]> delete from students where id=6;
+Query OK, 1 row affected (0.117 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+
+| id   | name   | phoneNo    |
++------+--------+------------+
+|    1 | saswat | 9853319315 |
+|    2 | babU   | 8909836474 |
+|    3 | soumya | 917827448  |
+|    4 | lubun  | 746577557  |
+|    5 | raja   | 8477585    |
++------+--------+------------+
+5 rows in set (0.000 sec)
+
+MariaDB [thapa]> insert into students values(6,"kanha",85768868);
+Query OK, 1 row affected (0.095 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+
+| id   | name   | phoneNo    |
++------+--------+------------+
+|    1 | saswat | 9853319315 |
+|    2 | babU   | 8909836474 |
+|    3 | soumya | 917827448  |
+|    4 | lubun  | 746577557  |
+|    5 | raja   | 8477585    |
+|    6 | kanha  | 85768868   |
++------+--------+------------+
+6 rows in set (0.000 sec)
+
+MariaDB [thapa]> insert into students values(muna,"muna","1111111");
+ERROR 1054 (42S22): Unknown column 'muna' in 'field list'
+MariaDB [thapa]> show error
+    -> ;
+
+MariaDB [thapa]> alter table students add email_id varchar(255);
+Query OK, 0 rows affected (0.224 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [thapa]> desc students;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int(11)      | YES  |     | NULL    |       |
+| name     | varchar(255) | YES  |     | NULL    |       |
+| phoneNo  | varchar(255) | YES  |     | NULL    |       |
+| email_id | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.010 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+----------+
+| id   | name   | phoneNo    | email_id |
++------+--------+------------+----------+
+|    1 | saswat | 9853319315 | NULL     |
+|    2 | babU   | 8909836474 | NULL     |
+|    3 | soumya | 917827448  | NULL     |
+|    4 | lubun  | 746577557  | NULL     |
+|    5 | raja   | 8477585    | NULL     |
+|    6 | kanha  | 85768868   | NULL     |
++------+--------+------------+----------+
+6 rows in set (0.000 sec)
+
+
+MariaDB [thapa]> alter table students add address varchar(255);
+Query OK, 0 rows affected (0.220 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+----------+---------+
+| id   | name   | phoneNo    | email_id | address |
++------+--------+------------+----------+---------+
+|    1 | saswat | 9853319315 | NULL     | NULL    |
+|    2 | babU   | 8909836474 | NULL     | NULL    |
+|    3 | soumya | 917827448  | NULL     | NULL    |
+|    4 | lubun  | 746577557  | NULL     | NULL    |
+|    5 | raja   | 8477585    | NULL     | NULL    |
+|    6 | kanha  | 85768868   | NULL     | NULL    |
++------+--------+------------+----------+---------+
+6 rows in set (0.000 sec)
+
+MariaDB [thapa]> alter table students drop column email_id;
+Query OK, 0 rows affected (0.055 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+---------+
+| id   | name   | phoneNo    | address |
++------+--------+------------+---------+
+|    1 | saswat | 9853319315 | NULL    |
+|    2 | babU   | 8909836474 | NULL    |
+|    3 | soumya | 917827448  | NULL    |
+|    4 | lubun  | 746577557  | NULL    |
+|    5 | raja   | 8477585    | NULL    |
+|    6 | kanha  | 85768868   | NULL    |
++------+--------+------------+---------+
+6 rows in set (0.000 sec)
+
+MariaDB [thapa]> update students set address="panikoili" where id=1;
+Query OK, 1 row affected (0.125 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | NULL      |
+|    3 | soumya | 917827448  | NULL      |
+|    4 | lubun  | 746577557  | NULL      |
+|    5 | raja   | 8477585    | NULL      |
+|    6 | kanha  | 85768868   | NULL      |
++------+--------+------------+-----------+
+6 rows in set (0.000 sec)
+
+MariaDB [thapa]> update students set address="ochinda" where id=3;
+Query OK, 1 row affected (0.134 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | NULL      |
+|    3 | soumya | 917827448  | ochinda   |
+|    4 | lubun  | 746577557  | NULL      |
+|    5 | raja   | 8477585    | NULL      |
+|    6 | kanha  | 85768868   | NULL      |
++------+--------+------------+-----------+
+6 rows in set (0.000 sec)
+
+MariaDB [thapa]> update students set address="colony" where name="raja";
+Query OK, 1 row affected (0.126 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | NULL      |
+|    3 | soumya | 917827448  | ochinda   |
+|    4 | lubun  | 746577557  | NULL      |
+|    5 | raja   | 8477585    | colony    |
+|    6 | kanha  | 85768868   | NULL      |
++------+--------+------------+-----------+
+6 rows in set (0.000 sec)
+
+
+MariaDB [thapa]> create table cust(id int,name varchar(255),primary key(id));
+Query OK, 0 rows affected (0.334 sec)
+
+MariaDB [thapa]> desc cust
+    -> ;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int(11)      | NO   | PRI | NULL    |       |
+| name  | varchar(255) | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.018 sec)
+
+MariaDB [thapa]> create table cust2(id int auto_increment,name varchar(255),primary key(id));
+Query OK, 0 rows affected (0.269 sec)
+
+MariaDB [thapa]> desc cust2;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255) | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+2 rows in set (0.102 sec)
+
+
+MariaDB [thapa]> create table cust3(id int auto_increment,name varchar(255) default "notset",primary key(id));
+Query OK, 0 rows affected (0.263 sec)
+
+MariaDB [thapa]> desc cust3;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255) | YES  |     | notset  |                |
++-------+--------------+------+-----+---------+----------------+
+2 rows in set (0.016 sec)
+
+MariaDB [thapa]> show tables;
++-----------------+
+| Tables_in_thapa |
++-----------------+
+| cust            |
+| cust2           |
+| cust3           |
+| employee        |
+| students        |
++-----------------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> drop table cust
+    -> ;
+Query OK, 0 rows affected (0.309 sec)
+
+MariaDB [thapa]> show tables;
++-----------------+
+| Tables_in_thapa |
++-----------------+
+| cust2           |
+| cust3           |
+| employee        |
+| students        |
++-----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from employee;
+Empty set (0.001 sec)
+
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | NULL      |
+|    3 | soumya | 917827448  | ochinda   |
+|    4 | lubun  | 746577557  | NULL      |
+|    5 | raja   | 8477585    | colony    |
+|    6 | kanha  | 85768868   | NULL      |
++------+--------+------------+-----------+
+6 rows in set (0.000 sec)
+
+MariaDB [thapa]> select * from students where id<=5
+    -> ;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | NULL      |
+|    3 | soumya | 917827448  | ochinda   |
+|    4 | lubun  | 746577557  | NULL      |
+|    5 | raja   | 8477585    | colony    |
++------+--------+------------+-----------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> update students set address="chandapur" where name="babU";
+Query OK, 1 row affected (0.129 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | chandapur |
+|    3 | soumya | 917827448  | ochinda   |
+|    4 | lubun  | 746577557  | NULL      |
+|    5 | raja   | 8477585    | colony    |
+|    6 | kanha  | 85768868   | NULL      |
++------+--------+------------+-----------+
+6 rows in set (0.000 sec)
+
+MariaDB [thapa]> delete from students where name="raja";
+Query OK, 1 row affected (0.056 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | chandapur |
+|    3 | soumya | 917827448  | ochinda   |
+|    4 | lubun  | 746577557  | NULL      |
+|    6 | kanha  | 85768868   | NULL      |
++------+--------+------------+-----------+
+5 rows in set (0.000 sec)
+
+MariaDB [thapa]>

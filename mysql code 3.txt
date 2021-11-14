@@ -1,0 +1,302 @@
+Microsoft Windows [Version 10.0.19043.1237]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\xampp\mysql\bin>mysql -u root -p -h localhost;
+Enter password:
+ERROR 2005 (HY000): Unknown MySQL server host 'localhost;' (11001)
+
+C:\xampp\mysql\bin>mysql -u root -p -h localhost
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbharry            |
+| idiscuss           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| projectdb          |
+| sampledb           |
+| sampledb2          |
+| test               |
+| thapa              |
+| user               |
++--------------------+
+12 rows in set (0.002 sec)
+
+MariaDB [(none)]> use thapa;
+Database changed
+MariaDB [thapa]> show tables;
++-----------------+
+| Tables_in_thapa |
++-----------------+
+| cust2           |
+| cust3           |
+| employee        |
+| students        |
++-----------------+
+4 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+------+-------+
+| id   | name   | phoneNo    | address   | age  | marks |
++------+--------+------------+-----------+------+-------+
+|    1 | saswat | 9853319315 | panikoili |   23 |   500 |
+|    2 | babU   | 8909836474 | chandapur |   33 |   515 |
+|    3 | soumya | 917827448  | ochinda   |   26 |   499 |
+|    4 | lubun  | 746577557  | NULL      |   33 |   540 |
+|    6 | kanha  | 85768868   | NULL      |   27 |   505 |
+|    7 | saswat | 34355454   | ctc       |   56 |   475 |
++------+--------+------------+-----------+------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [thapa]> create table customers (c_id int auto increment,c_name varchar(255),C_phoneNo varchr(255),primary key(c_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'auto increment,c_name varchar(255),C_phoneNo varchr(255),primary key(c_id))' at line 1
+MariaDB [thapa]> create table customers (c_id int auto_increment,c_name varchar(255),C_phoneNo varchr(255),primary key(c_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(255),primary key(c_id))' at line 1
+MariaDB [thapa]> create table customers (c_id int auto_increment,c_name varchar(255),C_phoneNo varchar(255),primary key(c_id));
+Query OK, 0 rows affected (0.227 sec)
+
+MariaDB [thapa]> desc customers
+    -> ;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| c_id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| c_name    | varchar(255) | YES  |     | NULL    |                |
+| C_phoneNo | varchar(255) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.083 sec)
+
+MariaDB [thapa]> insert into customers("saswat","84675676");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '"saswat","84675676")' at line 1
+MariaDB [thapa]> insert into customers values("saswat","84675676");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [thapa]> insert into customers values(1,"saswat","84675676");
+Query OK, 1 row affected (0.140 sec)
+
+MariaDB [thapa]> insert into customers values(2,"babu","4746474");
+Query OK, 1 row affected (0.208 sec)
+
+MariaDB [thapa]> insert into customers values(3,"lubun","467758");
+Query OK, 1 row affected (0.117 sec)
+
+MariaDB [thapa]> insert into customers values(4,"kanha","67567588");
+Query OK, 1 row affected (0.386 sec)
+
+MariaDB [thapa]> insert into customers values(5,"muna","34566477");
+Query OK, 1 row affected (0.450 sec)
+
+MariaDB [thapa]> select * from customers;
++------+--------+-----------+
+| c_id | c_name | C_phoneNo |
++------+--------+-----------+
+|    1 | saswat | 84675676  |
+|    2 | babu   | 4746474   |
+|    3 | lubun  | 467758    |
+|    4 | kanha  | 67567588  |
+|    5 | muna   | 34566477  |
++------+--------+-----------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> create table orders(o_id int auto_increment,o_name varchar(255),c_id int,primary key(o_id),foreign key(c_id) references customers(c_id));
+Query OK, 0 rows affected (0.590 sec)
+
+MariaDB [thapa]> desc orders
+    -> ;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| o_id   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| o_name | varchar(255) | YES  |     | NULL    |                |
+| c_id   | int(11)      | YES  | MUL | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+3 rows in set (0.029 sec)
+
+MariaDB [thapa]> insert into orders values(101,"slipper",3);
+Query OK, 1 row affected (0.045 sec)
+
+MariaDB [thapa]> insert into orders values(102,"book",5);
+Query OK, 1 row affected (0.058 sec)
+
+MariaDB [thapa]> insert into orders values(103,"tv",1);
+Query OK, 1 row affected (0.112 sec)
+
+MariaDB [thapa]> insert into orders values(103,"ac",3);
+ERROR 1062 (23000): Duplicate entry '103' for key 'PRIMARY'
+MariaDB [thapa]> insert into orders values(104,"ac",3);
+Query OK, 1 row affected (0.190 sec)
+
+MariaDB [thapa]> insert into orders values(105,"bat",4);
+Query OK, 1 row affected (0.131 sec)
+
+MariaDB [thapa]> insert into orders values(106,"laptop",2);
+Query OK, 1 row affected (0.131 sec)
+
+MariaDB [thapa]> insert into orders values(107,"mobile",5);
+Query OK, 1 row affected (0.136 sec)
+
+MariaDB [thapa]> insert into orders values(108,"belt",2);
+Query OK, 1 row affected (0.129 sec)
+
+MariaDB [thapa]> insert into orders values(109,"wallet",4);
+Query OK, 1 row affected (0.114 sec)
+
+MariaDB [thapa]> insert into orders values(110,"charger",1);
+Query OK, 1 row affected (0.055 sec)
+
+MariaDB [thapa]> insert into orders values(111,"data cable",3);
+Query OK, 1 row affected (0.057 sec)
+
+MariaDB [thapa]> insert into orders values(112,"cap",5);
+Query OK, 1 row affected (0.123 sec)
+
+MariaDB [thapa]> insert into orders values(113,"keyboard",6);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`thapa`.`orders`, CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`))
+MariaDB [thapa]> select * from orders;
++------+------------+------+
+| o_id | o_name     | c_id |
++------+------------+------+
+|  101 | slipper    |    3 |
+|  102 | book       |    5 |
+|  103 | tv         |    1 |
+|  104 | ac         |    3 |
+|  105 | bat        |    4 |
+|  106 | laptop     |    2 |
+|  107 | mobile     |    5 |
+|  108 | belt       |    2 |
+|  109 | wallet     |    4 |
+|  110 | charger    |    1 |
+|  111 | data cable |    3 |
+|  112 | cap        |    5 |
++------+------------+------+
+12 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from customers;
++------+--------+-----------+
+| c_id | c_name | C_phoneNo |
++------+--------+-----------+
+|    1 | saswat | 84675676  |
+|    2 | babu   | 4746474   |
+|    3 | lubun  | 467758    |
+|    4 | kanha  | 67567588  |
+|    5 | muna   | 34566477  |
++------+--------+-----------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from orders;
++------+------------+------+
+| o_id | o_name     | c_id |
++------+------------+------+
+|  101 | slipper    |    3 |
+|  102 | book       |    5 |
+|  103 | tv         |    1 |
+|  104 | ac         |    3 |
+|  105 | bat        |    4 |
+|  106 | laptop     |    2 |
+|  107 | mobile     |    5 |
+|  108 | belt       |    2 |
+|  109 | wallet     |    4 |
+|  110 | charger    |    1 |
+|  111 | data cable |    3 |
+|  112 | cap        |    5 |
++------+------------+------+
+12 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from customers natural join orders;
++------+--------+-----------+------+------------+
+| c_id | c_name | C_phoneNo | o_id | o_name     |
++------+--------+-----------+------+------------+
+|    1 | saswat | 84675676  |  103 | tv         |
+|    1 | saswat | 84675676  |  110 | charger    |
+|    2 | babu   | 4746474   |  106 | laptop     |
+|    2 | babu   | 4746474   |  108 | belt       |
+|    3 | lubun  | 467758    |  101 | slipper    |
+|    3 | lubun  | 467758    |  104 | ac         |
+|    3 | lubun  | 467758    |  111 | data cable |
+|    4 | kanha  | 67567588  |  105 | bat        |
+|    4 | kanha  | 67567588  |  109 | wallet     |
+|    5 | muna   | 34566477  |  102 | book       |
+|    5 | muna   | 34566477  |  107 | mobile     |
+|    5 | muna   | 34566477  |  112 | cap        |
++------+--------+-----------+------+------------+
+12 rows in set (0.103 sec)
+
+MariaDB [thapa]> select * from customers cross join orders;
++------+--------+-----------+------+------------+------+
+| c_id | c_name | C_phoneNo | o_id | o_name     | c_id |
++------+--------+-----------+------+------------+------+
+|    1 | saswat | 84675676  |  101 | slipper    |    3 |
+|    2 | babu   | 4746474   |  101 | slipper    |    3 |
+|    3 | lubun  | 467758    |  101 | slipper    |    3 |
+|    4 | kanha  | 67567588  |  101 | slipper    |    3 |
+|    5 | muna   | 34566477  |  101 | slipper    |    3 |
+|    1 | saswat | 84675676  |  102 | book       |    5 |
+|    2 | babu   | 4746474   |  102 | book       |    5 |
+|    3 | lubun  | 467758    |  102 | book       |    5 |
+|    4 | kanha  | 67567588  |  102 | book       |    5 |
+|    5 | muna   | 34566477  |  102 | book       |    5 |
+|    1 | saswat | 84675676  |  103 | tv         |    1 |
+|    2 | babu   | 4746474   |  103 | tv         |    1 |
+|    3 | lubun  | 467758    |  103 | tv         |    1 |
+|    4 | kanha  | 67567588  |  103 | tv         |    1 |
+|    5 | muna   | 34566477  |  103 | tv         |    1 |
+|    1 | saswat | 84675676  |  104 | ac         |    3 |
+|    2 | babu   | 4746474   |  104 | ac         |    3 |
+|    3 | lubun  | 467758    |  104 | ac         |    3 |
+|    4 | kanha  | 67567588  |  104 | ac         |    3 |
+|    5 | muna   | 34566477  |  104 | ac         |    3 |
+|    1 | saswat | 84675676  |  105 | bat        |    4 |
+|    2 | babu   | 4746474   |  105 | bat        |    4 |
+|    3 | lubun  | 467758    |  105 | bat        |    4 |
+|    4 | kanha  | 67567588  |  105 | bat        |    4 |
+|    5 | muna   | 34566477  |  105 | bat        |    4 |
+|    1 | saswat | 84675676  |  106 | laptop     |    2 |
+|    2 | babu   | 4746474   |  106 | laptop     |    2 |
+|    3 | lubun  | 467758    |  106 | laptop     |    2 |
+|    4 | kanha  | 67567588  |  106 | laptop     |    2 |
+|    5 | muna   | 34566477  |  106 | laptop     |    2 |
+|    1 | saswat | 84675676  |  107 | mobile     |    5 |
+|    2 | babu   | 4746474   |  107 | mobile     |    5 |
+|    3 | lubun  | 467758    |  107 | mobile     |    5 |
+|    4 | kanha  | 67567588  |  107 | mobile     |    5 |
+|    5 | muna   | 34566477  |  107 | mobile     |    5 |
+|    1 | saswat | 84675676  |  108 | belt       |    2 |
+|    2 | babu   | 4746474   |  108 | belt       |    2 |
+|    3 | lubun  | 467758    |  108 | belt       |    2 |
+|    4 | kanha  | 67567588  |  108 | belt       |    2 |
+|    5 | muna   | 34566477  |  108 | belt       |    2 |
+|    1 | saswat | 84675676  |  109 | wallet     |    4 |
+|    2 | babu   | 4746474   |  109 | wallet     |    4 |
+|    3 | lubun  | 467758    |  109 | wallet     |    4 |
+|    4 | kanha  | 67567588  |  109 | wallet     |    4 |
+|    5 | muna   | 34566477  |  109 | wallet     |    4 |
+|    1 | saswat | 84675676  |  110 | charger    |    1 |
+|    2 | babu   | 4746474   |  110 | charger    |    1 |
+|    3 | lubun  | 467758    |  110 | charger    |    1 |
+|    4 | kanha  | 67567588  |  110 | charger    |    1 |
+|    5 | muna   | 34566477  |  110 | charger    |    1 |
+|    1 | saswat | 84675676  |  111 | data cable |    3 |
+|    2 | babu   | 4746474   |  111 | data cable |    3 |
+|    3 | lubun  | 467758    |  111 | data cable |    3 |
+|    4 | kanha  | 67567588  |  111 | data cable |    3 |
+|    5 | muna   | 34566477  |  111 | data cable |    3 |
+|    1 | saswat | 84675676  |  112 | cap        |    5 |
+|    2 | babu   | 4746474   |  112 | cap        |    5 |
+|    3 | lubun  | 467758    |  112 | cap        |    5 |
+|    4 | kanha  | 67567588  |  112 | cap        |    5 |
+|    5 | muna   | 34566477  |  112 | cap        |    5 |
++------+--------+-----------+------+------------+------+
+60 rows in set (0.001 sec)
+
+MariaDB [thapa]>

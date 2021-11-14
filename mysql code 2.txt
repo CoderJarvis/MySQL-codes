@@ -1,0 +1,379 @@
+Microsoft Windows [Version 10.0.19043.1237]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\xampp\mysql\bin>mysql -u root -p -h localhost
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.20-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dbharry            |
+| idiscuss           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| projectdb          |
+| sampledb           |
+| sampledb2          |
+| test               |
+| thapa              |
+| user               |
++--------------------+
+12 rows in set (0.217 sec)
+
+MariaDB [(none)]> use thapa;
+Database changed
+MariaDB [thapa]> show tables;
++-----------------+
+| Tables_in_thapa |
++-----------------+
+| cust2           |
+| cust3           |
+| employee        |
+| students        |
++-----------------+
+4 rows in set (0.004 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | chandapur |
+|    3 | soumya | 917827448  | ochinda   |
+|    4 | lubun  | 746577557  | NULL      |
+|    6 | kanha  | 85768868   | NULL      |
++------+--------+------------+-----------+
+5 rows in set (0.242 sec)
+
+MariaDB [thapa]> select * from employee;
+Empty set (0.049 sec)
+
+MariaDB [thapa]> select * from cust2;
+Empty set (0.047 sec)
+
+MariaDB [thapa]> select * from cust3;
+Empty set (0.121 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+
+| id   | name   | phoneNo    | address   |
++------+--------+------------+-----------+
+|    1 | saswat | 9853319315 | panikoili |
+|    2 | babU   | 8909836474 | chandapur |
+|    3 | soumya | 917827448  | ochinda   |
+|    4 | lubun  | 746577557  | NULL      |
+|    6 | kanha  | 85768868   | NULL      |
++------+--------+------------+-----------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> alter table students add age int;
+Query OK, 0 rows affected (0.281 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+------+
+| id   | name   | phoneNo    | address   | age  |
++------+--------+------------+-----------+------+
+|    1 | saswat | 9853319315 | panikoili | NULL |
+|    2 | babU   | 8909836474 | chandapur | NULL |
+|    3 | soumya | 917827448  | ochinda   | NULL |
+|    4 | lubun  | 746577557  | NULL      | NULL |
+|    6 | kanha  | 85768868   | NULL      | NULL |
++------+--------+------------+-----------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> update students set age=23 where id=1;
+Query OK, 1 row affected (0.068 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> update students set age=33 where id=2;
+Query OK, 1 row affected (0.115 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> update students set age=26 where id=3;
+Query OK, 1 row affected (0.128 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> update students set age=33 where id=4;
+Query OK, 1 row affected (0.085 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> update students set age=23 where id=5;
+Query OK, 0 rows affected (0.000 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+MariaDB [thapa]> update students set age=27 where id=6;
+Query OK, 1 row affected (0.136 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+------+
+| id   | name   | phoneNo    | address   | age  |
++------+--------+------------+-----------+------+
+|    1 | saswat | 9853319315 | panikoili |   23 |
+|    2 | babU   | 8909836474 | chandapur |   33 |
+|    3 | soumya | 917827448  | ochinda   |   26 |
+|    4 | lubun  | 746577557  | NULL      |   33 |
+|    6 | kanha  | 85768868   | NULL      |   27 |
++------+--------+------------+-----------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> select age from students;
++------+
+| age  |
++------+
+|   23 |
+|   33 |
+|   26 |
+|   33 |
+|   27 |
++------+
+5 rows in set (0.000 sec)
+
+MariaDB [thapa]> select distinct age from students;
++------+
+| age  |
++------+
+|   23 |
+|   33 |
+|   26 |
+|   27 |
++------+
+4 rows in set (0.091 sec)
+
+
+MariaDB [thapa]> select distinct age from students order by age;
++------+
+| age  |
++------+
+|   23 |
+|   26 |
+|   27 |
+|   33 |
++------+
+4 rows in set (0.090 sec)
+
+
+MariaDB [thapa]> select distinct age from students order by age desc;
++------+
+| age  |
++------+
+|   33 |
+|   27 |
+|   26 |
+|   23 |
++------+
+4 rows in set (0.001 sec)
+
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+------+
+| id   | name   | phoneNo    | address   | age  |
++------+--------+------------+-----------+------+
+|    1 | saswat | 9853319315 | panikoili |   23 |
+|    2 | babU   | 8909836474 | chandapur |   33 |
+|    3 | soumya | 917827448  | ochinda   |   26 |
+|    4 | lubun  | 746577557  | NULL      |   33 |
+|    6 | kanha  | 85768868   | NULL      |   27 |
++------+--------+------------+-----------+------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from students limit 3;
++------+--------+------------+-----------+------+
+| id   | name   | phoneNo    | address   | age  |
++------+--------+------------+-----------+------+
+|    1 | saswat | 9853319315 | panikoili |   23 |
+|    2 | babU   | 8909836474 | chandapur |   33 |
+|    3 | soumya | 917827448  | ochinda   |   26 |
++------+--------+------------+-----------+------+
+3 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from students where name like '%bu%';
++------+-------+------------+-----------+------+
+| id   | name  | phoneNo    | address   | age  |
++------+-------+------------+-----------+------+
+|    2 | babU  | 8909836474 | chandapur |   33 |
+|    4 | lubun | 746577557  | NULL      |   33 |
++------+-------+------------+-----------+------+
+2 rows in set (0.090 sec)
+
+MariaDB [thapa]> alter table students add marks int;
+Query OK, 0 rows affected (0.112 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [thapa]> update students set marks=500 where id=1;
+Query OK, 1 row affected (0.072 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+------+-------+
+| id   | name   | phoneNo    | address   | age  | marks |
++------+--------+------------+-----------+------+-------+
+|    1 | saswat | 9853319315 | panikoili |   23 |   500 |
+|    2 | babU   | 8909836474 | chandapur |   33 |  NULL |
+|    3 | soumya | 917827448  | ochinda   |   26 |  NULL |
+|    4 | lubun  | 746577557  | NULL      |   33 |  NULL |
+|    6 | kanha  | 85768868   | NULL      |   27 |  NULL |
++------+--------+------------+-----------+------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> update students set marks=515 where id=2;
+Query OK, 1 row affected (0.416 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> update students set marks=499 where id=3;
+Query OK, 1 row affected (0.115 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> update students set marks=540 where id=4;
+Query OK, 1 row affected (0.058 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> update students set marks=550 where id=5;
+Query OK, 0 rows affected (0.000 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+MariaDB [thapa]> update students set marks=505 where id=6;
+Query OK, 1 row affected (0.119 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+------+-------+
+| id   | name   | phoneNo    | address   | age  | marks |
++------+--------+------------+-----------+------+-------+
+|    1 | saswat | 9853319315 | panikoili |   23 |   500 |
+|    2 | babU   | 8909836474 | chandapur |   33 |   515 |
+|    3 | soumya | 917827448  | ochinda   |   26 |   499 |
+|    4 | lubun  | 746577557  | NULL      |   33 |   540 |
+|    6 | kanha  | 85768868   | NULL      |   27 |   505 |
++------+--------+------------+-----------+------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> select min(marks) from students;
++------------+
+| min(marks) |
++------------+
+|        499 |
++------------+
+1 row in set (0.040 sec)
+
+MariaDB [thapa]> select max(age) from students;
++----------+
+| max(age) |
++----------+
+|       33 |
++----------+
+1 row in set (0.001 sec)
+
+MariaDB [thapa]> select count(name) from students;
++-------------+
+| count(name) |
++-------------+
+|           5 |
++-------------+
+1 row in set (0.003 sec)
+
+MariaDB [thapa]> select sum(marks) from students;
++------------+
+| sum(marks) |
++------------+
+|       2559 |
++------------+
+1 row in set (0.001 sec)
+
+MariaDB [thapa]> select avg(marks) from students;
++------------+
+| avg(marks) |
++------------+
+|   511.8000 |
++------------+
+1 row in set (0.001 sec)
+
+MariaDB [thapa]>
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+------+-------+
+| id   | name   | phoneNo    | address   | age  | marks |
++------+--------+------------+-----------+------+-------+
+|    1 | saswat | 9853319315 | panikoili |   23 |   500 |
+|    2 | babU   | 8909836474 | chandapur |   33 |   515 |
+|    3 | soumya | 917827448  | ochinda   |   26 |   499 |
+|    4 | lubun  | 746577557  | NULL      |   33 |   540 |
+|    6 | kanha  | 85768868   | NULL      |   27 |   505 |
++------+--------+------------+-----------+------+-------+
+5 rows in set (0.001 sec)
+
+MariaDB [thapa]> select name,marks from students where name="saswat" and address="panikoili";
++--------+-------+
+| name   | marks |
++--------+-------+
+| saswat |   500 |
++--------+-------+
+1 row in set (0.123 sec)
+
+MariaDB [thapa]> insert into students values(7,"saswat","34355454","ctc",56,475);
+Query OK, 1 row affected (0.079 sec)
+
+MariaDB [thapa]> select * from students;
++------+--------+------------+-----------+------+-------+
+| id   | name   | phoneNo    | address   | age  | marks |
++------+--------+------------+-----------+------+-------+
+|    1 | saswat | 9853319315 | panikoili |   23 |   500 |
+|    2 | babU   | 8909836474 | chandapur |   33 |   515 |
+|    3 | soumya | 917827448  | ochinda   |   26 |   499 |
+|    4 | lubun  | 746577557  | NULL      |   33 |   540 |
+|    6 | kanha  | 85768868   | NULL      |   27 |   505 |
+|    7 | saswat | 34355454   | ctc       |   56 |   475 |
++------+--------+------------+-----------+------+-------+
+6 rows in set (0.001 sec)
+
+MariaDB [thapa]> select name,marks from students where name="saswat" and address="ctc";
++--------+-------+
+| name   | marks |
++--------+-------+
+| saswat |   475 |
++--------+-------+
+1 row in set (0.001 sec)
+
+MariaDB [thapa]> select * from students where age=33 or name="saswat";
++------+--------+------------+-----------+------+-------+
+| id   | name   | phoneNo    | address   | age  | marks |
++------+--------+------------+-----------+------+-------+
+|    1 | saswat | 9853319315 | panikoili |   23 |   500 |
+|    2 | babU   | 8909836474 | chandapur |   33 |   515 |
+|    4 | lubun  | 746577557  | NULL      |   33 |   540 |
+|    7 | saswat | 34355454   | ctc       |   56 |   475 |
++------+--------+------------+-----------+------+-------+
+4 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from students where age in(33,26);
++------+--------+------------+-----------+------+-------+
+| id   | name   | phoneNo    | address   | age  | marks |
++------+--------+------------+-----------+------+-------+
+|    2 | babU   | 8909836474 | chandapur |   33 |   515 |
+|    3 | soumya | 917827448  | ochinda   |   26 |   499 |
+|    4 | lubun  | 746577557  | NULL      |   33 |   540 |
++------+--------+------------+-----------+------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [thapa]> select * from students where marks between 500 and 600;
++------+--------+------------+-----------+------+-------+
+| id   | name   | phoneNo    | address   | age  | marks |
++------+--------+------------+-----------+------+-------+
+|    1 | saswat | 9853319315 | panikoili |   23 |   500 |
+|    2 | babU   | 8909836474 | chandapur |   33 |   515 |
+|    4 | lubun  | 746577557  | NULL      |   33 |   540 |
+|    6 | kanha  | 85768868   | NULL      |   27 |   505 |
++------+--------+------------+-----------+------+-------+
+4 rows in set (0.001 sec)
+
+MariaDB [thapa]>
