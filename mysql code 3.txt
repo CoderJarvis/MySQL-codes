@@ -60,10 +60,7 @@ MariaDB [thapa]> select * from students;
 +------+--------+------------+-----------+------+-------+
 6 rows in set (0.001 sec)
 
-MariaDB [thapa]> create table customers (c_id int auto increment,c_name varchar(255),C_phoneNo varchr(255),primary key(c_id));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'auto increment,c_name varchar(255),C_phoneNo varchr(255),primary key(c_id))' at line 1
-MariaDB [thapa]> create table customers (c_id int auto_increment,c_name varchar(255),C_phoneNo varchr(255),primary key(c_id));
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(255),primary key(c_id))' at line 1
+
 MariaDB [thapa]> create table customers (c_id int auto_increment,c_name varchar(255),C_phoneNo varchar(255),primary key(c_id));
 Query OK, 0 rows affected (0.227 sec)
 
@@ -78,10 +75,6 @@ MariaDB [thapa]> desc customers
 +-----------+--------------+------+-----+---------+----------------+
 3 rows in set (0.083 sec)
 
-MariaDB [thapa]> insert into customers("saswat","84675676");
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '"saswat","84675676")' at line 1
-MariaDB [thapa]> insert into customers values("saswat","84675676");
-ERROR 1136 (21S01): Column count doesn't match value count at row 1
 MariaDB [thapa]> insert into customers values(1,"saswat","84675676");
 Query OK, 1 row affected (0.140 sec)
 
@@ -132,8 +125,7 @@ Query OK, 1 row affected (0.058 sec)
 MariaDB [thapa]> insert into orders values(103,"tv",1);
 Query OK, 1 row affected (0.112 sec)
 
-MariaDB [thapa]> insert into orders values(103,"ac",3);
-ERROR 1062 (23000): Duplicate entry '103' for key 'PRIMARY'
+
 MariaDB [thapa]> insert into orders values(104,"ac",3);
 Query OK, 1 row affected (0.190 sec)
 
@@ -161,8 +153,7 @@ Query OK, 1 row affected (0.057 sec)
 MariaDB [thapa]> insert into orders values(112,"cap",5);
 Query OK, 1 row affected (0.123 sec)
 
-MariaDB [thapa]> insert into orders values(113,"keyboard",6);
-ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`thapa`.`orders`, CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`))
+
 MariaDB [thapa]> select * from orders;
 +------+------------+------+
 | o_id | o_name     | c_id |
